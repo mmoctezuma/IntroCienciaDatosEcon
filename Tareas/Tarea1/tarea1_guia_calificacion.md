@@ -1,93 +1,86 @@
-# Tarea 1 — Guía de calificación con otter-grader
+# Tarea 1 — Guía de calificación
 ## EO4040 Introducción a la Ciencia de Datos para Economía
 
 ---
 
-## Archivos que tienes
+## Archivos
 
 | Archivo | Uso |
 |---|---|
-| `tarea1_alumno.ipynb` | **Este es el que distribuyes a los alumnos** |
-| `tarea1_master.ipynb` | Solo para ti — tiene las soluciones y los tests |
+| `tarea1_alumno.ipynb` | Distribuyes a los alumnos por Canvas |
+| `tarea1_master.ipynb` | Solo para ti — tiene las soluciones |
+| `tarea1_autograder.zip` | Solo para ti — para calificar con `otter run` |
+| `tests/q1.py … q8.py` | Súbelos a GitHub (carpeta `tests/`) |
 
 ---
 
-## Setup (una sola vez)
+## Setup inicial (una sola vez)
 
 ```bash
-pip install otter-grader
+pip install otter-grader==5.5.0
 ```
 
 ---
 
-## Flujo de trabajo
+## Flujo del alumno
 
-### 1. Distribuir la tarea
-Sube `tarea1_alumno.ipynb` a Canvas como archivo descargable.  
-Los alumnos también necesitan descargar `concentradohogar.csv` desde:  
-https://www.inegi.org.mx/programas/enigh/nc/2022/
+1. Descarga `tarea1_alumno.ipynb` de Canvas
+2. Lo abre en Google Colab
+3. Sube `concentradohogar.csv` desde: https://www.inegi.org.mx/programas/enigh/nc/2022/
+4. Corre todas las celdas en orden — la celda 1 descarga los tests de GitHub automáticamente
+5. Al terminar corre la celda final `grader.export()` y sube el `.zip` a Canvas
 
-### 2. Recibir las entregas
-Descarga todos los notebooks de Canvas. Ponlos en una carpeta, por ejemplo:
-```
-entregas/
-  alumno01.ipynb
-  alumno02.ipynb
-  ...
-```
-Cada alumno debe haber colocado `concentradohogar.csv` en la misma carpeta que su notebook antes de correrlo — el CSV estará embebido en los outputs de las celdas.
+---
 
-### 3. Calificar automáticamente (un solo comando)
+## Cómo calificar
+
+Descarga los `.zip` de Canvas. Por cada alumno:
+
 ```bash
-otter run alumno01.ipynb --autograder tarea1_master.ipynb
+otter run alumno.zip --autograder tarea1_autograder.zip --no-logo
 ```
 
 O para calificar todos a la vez:
+
 ```bash
-for f in entregas/*.ipynb; do
+for f in entregas/*.zip; do
     echo "--- Calificando: $f ---"
-    otter run "$f" --autograder tarea1_master.ipynb
+    otter run "$f" --autograder tarea1_autograder.zip --no-logo
 done
-```
-
-La salida muestra los puntos obtenidos por pregunta y el total sobre 80.
-
-### 4. Alternativa: calificación no-containerizada (más rápida, sin Docker)
-```bash
-otter run alumno01.ipynb --autograder tarea1_master.ipynb --no-containers
 ```
 
 ---
 
-## Distribución de puntos automáticos (80 pts)
+## Distribución de puntos (80 pts automáticos)
 
 | Pregunta | Pts | Qué verifica |
 |---|---|---|
-| q1 | 10 | El CSV se cargó correctamente (filas, columnas, columna folioviv) |
-| q2 | 10 | tabla_calidad tiene las 4 columnas, cubre todas las variables, rango correcto |
-| q3 | 10 | vars_con_faltantes correcta, n_duplicados correcto, col_mas_faltantes correcto |
+| q1 | 10 | CSV cargado correctamente (filas, columnas, folioviv) |
+| q2 | 10 | tabla_calidad con 4 columnas, todas las variables, rango correcto |
+| q3 | 10 | vars_con_faltantes, n_duplicados, col_mas_faltantes correctos |
 | q4 | 10 | df original intacto, df_clean sin duplicados en folioviv |
-| q5 | 10 | ingcor sin NaN, indicador binario correcto, conteo consistente |
+| q5 | 10 | rename de ing_cor a ingcor, indicador binario, sin NaN tras imputar |
 | q6 | 10 | est_socio es category ordenada con categorías [1,2,3,4] |
-| q7 | 10 | reporte con estructura y valores correctos, limpieza mejoró |
+| q7 | 10 | reporte con estructura y valores correctos |
 | q8 | 10 | CSV guardado, df_verificacion con dimensiones correctas |
 
 ---
 
-## Presentación en clase (20 pts) — rúbrica sugerida
+## Presentación en clase (20 pts)
 
 Duración: 5 minutos por alumno. Preguntar al menos 2 de estas 4:
 
-| Pregunta | 5 pts = excelente | 3 pts = suficiente | 0 pts = no sabe |
+| Pregunta | 5 pts | 3 pts | 0 pts |
 |---|---|---|---|
-| ¿Cuántas variables con faltantes y cuál tiene más? | Cita el número exacto y da una hipótesis sobre por qué | Cita el número, sin hipótesis | No recuerda o no corrió el diagnóstico |
-| ¿Por qué mediana y no media para ingcor? | Explica la asimetría del ingreso y el efecto de los outliers | "Porque es más robusta" sin más | No sabe la diferencia |
+| ¿Cuántas variables con faltantes y cuál tiene más? | Cita número exacto y da hipótesis | Cita el número, sin hipótesis | No recuerda |
+| ¿Por qué mediana y no media para ingcor? | Explica asimetría del ingreso y efecto de outliers | "Porque es más robusta" sin más | No sabe la diferencia |
 | Si el faltante es MNAR, ¿qué sesgo introduce la mediana? | Explica que sobrerepresenta ingresos medios | "Puede haber sesgo" sin precisar | No conoce MCAR/MAR/MNAR |
-| ¿Cómo afecta ese sesgo a un análisis de desigualdad? | Conecta con subestimación del GINI o coeficiente de Atkinson | Menciona que puede haber error en la política | No conecta los conceptos |
+| ¿Cómo afecta ese sesgo a un análisis de desigualdad? | Conecta con subestimación del GINI | Menciona error en política | No conecta los conceptos |
 
 ---
 
-## Notas
-- Los tests son deterministos: el resultado correcto depende únicamente del archivo CSV oficial de la ENIGH 2022.
-- Si un alumno usa un archivo diferente o con nombre distinto, q1 fallará y el resto de la cadena también — está diseñado así intencionalmente.
-- La pregunta de presentación 3 (MNAR) es la más difícil — es normal que pocos la respondan perfectamente.
+## Notas importantes
+
+- La variable en la ENIGH 2022 se llama `ing_cor` (con guion bajo). El alumno debe renombrarla a `ingcor` en la pregunta 5.
+- `ing_cor` no tiene valores faltantes en la ENIGH 2022 — es normal que `ingcor_faltante` quede en cero.
+- Los tests dependen del CSV oficial de INEGI. Si el alumno usa otro archivo, q1 fallará.

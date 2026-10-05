@@ -226,3 +226,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# DataBases
+Tareas/Tarea1/enigh2022_ns_concentradohogar_csv/
