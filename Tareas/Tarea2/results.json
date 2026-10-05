@@ -1,0 +1,66 @@
+{
+    "tests": [
+        {
+            "name": "Public Tests",
+            "visibility": "visible",
+            "output": "q1 results: All test cases passed!\n\nq2 results: All test cases passed!\n\nq3 results: All test cases passed!\n\nq4 results: All test cases passed!\n\nq5 results: All test cases passed!\n\nq6 results: All test cases passed!\n\nq7 results: All test cases passed!\n\nq8 results: All test cases passed!",
+            "status": "passed"
+        },
+        {
+            "name": "q1",
+            "score": 10.0,
+            "max_score": 10.0,
+            "visibility": "hidden",
+            "output": "q1 results: All test cases passed!"
+        },
+        {
+            "name": "q2",
+            "score": 10.0,
+            "max_score": 10.0,
+            "visibility": "hidden",
+            "output": "q2 results: All test cases passed!"
+        },
+        {
+            "name": "q3",
+            "score": 10.0,
+            "max_score": 10.0,
+            "visibility": "hidden",
+            "output": "q3 results: All test cases passed!"
+        },
+        {
+            "name": "q4",
+            "score": 10.0,
+            "max_score": 10.0,
+            "visibility": "hidden",
+            "output": "q4 results: All test cases passed!"
+        },
+        {
+            "name": "q5",
+            "score": 10.0,
+            "max_score": 10.0,
+            "visibility": "hidden",
+            "output": "q5 results: All test cases passed!"
+        },
+        {
+            "name": "q6",
+            "score": 10.0,
+            "max_score": 10.0,
+            "visibility": "hidden",
+            "output": "q6 results: All test cases passed!"
+        },
+        {
+            "name": "q7",
+            "score": 10.0,
+            "max_score": 10.0,
+            "visibility": "hidden",
+            "output": "q7 results: All test cases passed!"
+        },
+        {
+            "name": "q8",
+            "score": 10.0,
+            "max_score": 10.0,
+            "visibility": "hidden",
+            "output": "q8 results: All test cases passed!"
+        }
+    ]
+}
