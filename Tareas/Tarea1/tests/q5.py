@@ -15,7 +15,7 @@ test = {
                     "locked": False
                 },
                 {
-                    "code": ">>> df_clean['ingcor'].isnull().sum() == 0\nTrue",
+                    "code": ">>> int(df_clean['ingcor'].isnull().sum()) == 0\nTrue",
                     "hidden": False,
                     "locked": False
                 },

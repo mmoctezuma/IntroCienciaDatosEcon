@@ -30,7 +30,7 @@ test = {
                     "locked": False
                 },
                 {
-                    "code": ">>> reporte.set_index('dataset').loc['limpio', 'total_nan'] <= reporte.set_index('dataset').loc['original', 'total_nan']\nTrue",
+                    "code": ">>> int(reporte.set_index('dataset').loc['limpio', 'total_nan']) <= int(reporte.set_index('dataset').loc['original', 'total_nan'])\nTrue",
                     "hidden": False,
                     "locked": False
                 }

@@ -20,7 +20,7 @@ test = {
                     "locked": False
                 },
                 {
-                    "code": ">>> df_clean.duplicated(subset='folioviv').sum() == 0\nTrue",
+                    "code": ">>> int(df_clean.duplicated(subset='folioviv').sum()) == 0\nTrue",
                     "hidden": False,
                     "locked": False
                 },
