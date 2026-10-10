@@ -20,7 +20,7 @@ test = {
                     "locked": False
                 },
                 {
-                    "code": ">>> tabla_calidad['pct_faltantes'].between(0, 100).all()\nTrue",
+                    "code": ">>> bool(tabla_calidad['pct_faltantes'].between(0, 100).all())\nTrue",
                     "hidden": False,
                     "locked": False
                 }
